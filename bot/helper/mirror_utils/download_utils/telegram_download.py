@@ -109,7 +109,7 @@ class TelegramDownloadHelper:
         
         if media is not None:
             async with global_lock:
-                download = media.file_unique_id not in GLOBAL_GID
+                download = hasattr(media, 'file_unique_id') and media.file_unique_id not in GLOBAL_GID
 
             if download:
                 if filename == "":
